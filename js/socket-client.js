@@ -5,7 +5,7 @@ class SocketManager {
         this.sessionId = null;
         this.connected = false;
         this.reconnectAttempts = 0;
-        this.maxReconnectAttempts = 10;
+        this.maxReconnectAttempts = Infinity;
     }
 
     // Initialize socket connection
@@ -16,10 +16,13 @@ class SocketManager {
 
         this.socket = io(socketURL, {
             reconnection: true,
-            reconnectionDelay: 1000,
-            reconnectionDelayMax: 5000,
-            reconnectionAttempts: this.maxReconnectAttempts,
-            transports: ['websocket', 'polling']
+            reconnectionDelay: 500,
+            reconnectionDelayMax: 3000,
+            reconnectionAttempts: Infinity,
+            timeout: 20000,
+            transports: ['websocket', 'polling'],
+            autoConnect: true,
+            forceNew: false
         });
 
         this.setupEventListeners();

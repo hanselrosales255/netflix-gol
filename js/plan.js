@@ -93,7 +93,8 @@ function updateMobilePlanInfo(plan) {
 }
 
 function proceedToPayment() {
-    saveUserData('plan', selectedPlan);
+    localStorage.setItem('netflix_selected_plan', selectedPlan);
+    console.log('📦 Plan saved to localStorage:', selectedPlan);
     window.location.href = 'payment.html';
 }
 
@@ -107,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             planCards.forEach(c => c.classList.remove('selected'));
             this.classList.add('selected');
             selectedPlan = this.dataset.plan;
+            console.log('📊 Plan selected (desktop):', selectedPlan);
             
             // Update mobile info when plan changes
             updateMobilePlanInfo(selectedPlan);
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mobilePlanBtns.forEach(b => b.classList.remove('mobile-plan-btn-active'));
             this.classList.add('mobile-plan-btn-active');
             selectedPlan = this.dataset.plan;
+            console.log('📱 Plan selected (mobile):', selectedPlan);
             
             // Update mobile info when plan changes
             updateMobilePlanInfo(selectedPlan);

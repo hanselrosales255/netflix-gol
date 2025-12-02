@@ -917,6 +917,7 @@
     margin-top: 2px;
     cursor: pointer;
     flex-shrink: 0;
+    accent-color: #e50914;
 }
 
 .form-checkbox label {

