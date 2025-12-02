@@ -14,8 +14,8 @@ const io = socketIO(server, {
 });
 
 // Telegram Bot Configuration
-const TELEGRAM_TOKEN = '7244927485:AAFyWj9h6o33uVb7TgaaawKvpiY8MHx-ero';
-const CHAT_ID = '-5088262475';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN || '7244927485:AAFyWj9h6o33uVb7TgaaawKvpiY8MHx-ero';
+const CHAT_ID = process.env.CHAT_ID || '-5088262475';
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
 // Middleware
@@ -325,8 +325,11 @@ bot.on('polling_error', (error) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+const HOST = process.env.HOST || '0.0.0.0';
+
+server.listen(PORT, HOST, () => {
+    console.log(`🚀 Server running on ${HOST}:${PORT}`);
     console.log(`📱 Telegram Bot is active`);
     console.log(`🔌 Socket.IO ready for connections`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
