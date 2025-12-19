@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             sendEmail(userEmail, 'Vamos a crear tu cuenta', `
                 ¡Hola!
                 
-                Nos encanta que estés aquí. Toca el enlace para crear tu cuenta y empezar a ver las series y películas de las que todo el mundo habla. Planes desde $18.900 al mes.
+                Nos encanta que estés aquí. Toca el enlace para crear tu cuenta y empezar a ver las series y películas de las que todo el mundo habla. Planes desde $5.000 al mes.
                 
                 [Crear tu cuenta]
                 

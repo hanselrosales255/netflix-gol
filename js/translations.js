@@ -7,7 +7,7 @@ const translations = {
         
         // Hero
         heroTitle: 'Películas y series<br>ilimitadas y mucho más',
-        heroSubtitle: 'A partir de $ 18.900. Cancela cuando quieras.',
+        heroSubtitle: 'A partir de $ 5.000. Cancela cuando quieras.',
         heroText: '¿Quieres ver Netflix ya? Ingresa tu email para<br>crear una cuenta o reiniciar tu membresía de<br>Netflix.',
         emailPlaceholder: 'Email',
         emailLabel: 'Email',
@@ -33,7 +33,7 @@ const translations = {
         faq1Q: '¿Qué es Netflix?',
         faq1A: 'Netflix es un servicio de streaming que ofrece una gran variedad de películas, series y documentales premiados en casi cualquier pantalla conectada a internet.',
         faq2Q: '¿Cuánto cuesta Netflix?',
-        faq2A: 'Disfruta Netflix en tu smartphone, tablet, smart TV, laptop o dispositivo de streaming, todo por una tarifa plana mensual. Planes desde $18.900 hasta $44.900 al mes. Sin costos adicionales ni contratos.',
+        faq2A: 'Disfruta Netflix en tu smartphone, tablet, smart TV, laptop o dispositivo de streaming, todo por una tarifa plana mensual. Planes desde $5.000 hasta $20.000 al mes. Sin costos adicionales ni contratos.',
         faq3Q: '¿Dónde puedo ver Netflix?',
         faq3A: 'Disfruta donde quieras, cuando quieras. Inicia sesión en tu cuenta de Netflix para ver contenido al instante a través de netflix.com desde tu computadora personal o en cualquier dispositivo con conexión a internet.',
         faq4Q: '¿Cómo cancelo?',
@@ -129,7 +129,7 @@ const translations = {
         cardNumber: 'Número de tarjeta',
         expiryDate: 'Fecha de vencimiento (MM/AA)',
         cardName: 'Nombre en la tarjeta',
-        priceMonth: '$ 44.900 al mes',
+        priceMonth: '$ 20.000 al mes',
         changePrice: 'Cambiar',
         cardPaymentInfo: 'Los pagos se procesan internacionalmente. Es posible que se apliquen comisiones bancarias adicionales. Puede que tu banco o el emisor de tu tarjeta te hecho o comenzó la verificación del pago.',
         termsOfUse: 'Términos de uso',
